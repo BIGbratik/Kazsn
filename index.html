@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>TATARSTAN EMERCOM</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=621be811-2d42-457e-a014-904ec9f03a02&lang=ru_RU" harset="utf-8"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="left-container">
+        <div id="map"></div>
+        <!-- НЕ НАДО ТРОГАТЬ -->
+        <div id="pdo-toolbar">
+          <div><label><input type="checkbox" id="kvo" onclick="showPDO(1)"> КВО</label></div>
+          <div><label><input type="checkbox" id="poo" onclick="showPDO(2)"> ПОО</label></div>
+          <div><label><input type="checkbox" id="ojo" onclick="showPDO(3)"> ОЖО</label></div>
+        </div>
+        <div id="squareContainer"><img id="square" src="images/area.png"></div>
+        <div id="terdelContainer"><img id="terdel" src="images/terdel.png"></div>
+        <div id="roadsContainer"><img id="roads" src="images/roads.png"></div>
+        <!-- --------------- -->
+        <div id="chart"></div>
+      </div>
+      <div id="right-container">
+        <div id="select-container">
+          <select>
+            <option>Общая характеристика территории</option>
+          </select>
+          <button onclick=backToMap()>Стартовая карта</button>
+          <!--<p onclick=backToMap()><a href="#">Вернуться к стартовой карте</a></p>-->
+        </div>        
+        <div id="table-container">
+          <table id="obshaya-harack" class="table">
+          <tr><td><p>0</p>
+          </td>
+          <td><p>Наименование показателя</p>
+          </td>
+          <td><p>значение показателя на момент разработки паспорта</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr><tr><td><p>1</p>
+          </td>                           
+          <td><p>Общая численность населения</p>
+          </td>
+          <td><p><a href="#" onclick="chislNasl()">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          
+          <tr><td><p>1</p>
+          </td>
+          <td><p>Площадь территории</p>
+          </td>
+          <td><p onclick="showSquare()"><a href="#">63 839,55 га (638,4 км<sup>2</sup>)</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>2</p>
+          </td>
+          <td><p>Территориальное деление</p>
+          </td>
+          <td><p onclick="showTerDel()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>3</p>
+          </td>
+          <td><p>Количество населенных пунктов</p>
+          </td>
+          <td><p onclick="showNaslPunkt()"><a href="#">7</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>4</p>
+          </td>
+          <td><p>Численность населения</p>
+          </td>
+          <td><p>1 257 341 человек</p>
+            <p> (на 2021 год)</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>5</p>
+          </td>
+          <td><p>Количество населенных пунктов с объектами особой важности</p>
+          </td>
+          <td><p>МЧС России</p>
+          </td>
+          <td><p>Посредством запроса</p>
+          </td>
+          </tr>
+          <tr><td><p>6</p>
+          </td>
+          <td><p>Численность населения, проживающего в населенных пунктах с объектами ОВ и I категории</p>
+          </td>
+          <td><p>100% населения Казани</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>7</p>
+          </td>
+          <td><p>Плотность населения</p>
+          </td>
+          <td><p><a href="#" onclick="plotNasl()">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>8</p>
+          </td>
+          <td><p>Количество потенциально опасных объектов</p>
+          </td>
+          <td><p>48</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>9</p>
+          </td>
+          <td><p>Количество критически важных объектов</p>
+          </td>
+          <td><p>32</p>
+          </td>
+          <td><p>Посредством запроса</p>
+          </td>
+          </tr>
+          <tr><td><p>10</p>
+          </td>
+          <td><p>Степень износа производственного фонда</p>
+          </td>
+          <td><p><a href="#" onclick="iznosProizv()">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>11</p>
+          </td>
+          <td><p>Степень износа жилого фонда</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>12</p>
+          </td>
+          <td><p>Количество больничных учреждений</p>
+          </td>
+          <td><p onclick="hospitalMap()"><a href="#">226</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p> 
+          </td>
+          </tr>
+          <tr><td><p>13</p>
+          </td>
+          <td><p>Количество инфекционных стационаров</p>
+          </td>
+          <td><p>4</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>14</p>
+          </td>
+          <td><p>Число больничных коек</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>15</p>
+          </td>
+          <td><p>Число больных коек в инфекционных стационарах</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>16</p>
+          </td>
+          <td><p>Численность персонала всех медицинских специальностей</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>17</p>
+          </td>
+          <td><p>Численность среднего медицинского персонала, чел./10000 жителей</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>18</p>
+          </td>
+          <td><p>Количество мест массового скопления людей</p>
+          </td>
+          <td><p><a href="#" onclick="masSkop()">189 (на 2021 год)</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>19</p>
+          </td>
+          <td><p>Количество чрезвычайных ситуаций</p>
+          </td>
+          <td><p onclick="collCS()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Посредством запроса</p>
+          </td>
+          </tr>
+          <tr><td><p>20</p>
+          </td>
+          <td><p>Размер ущерба при чрезвычайных ситуациях</p>
+          </td>
+          <td><p>0</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>21</p>
+          </td>
+          <td><p>Показатель комплексного риска для населения и территории от чрезвычайных ситуаций природного и техногенного характера</p>
+          </td>
+          <td><p>ГОСТ Р 22.10.02-2016</p>
+          </td>
+          <td><p>ГОСТ Р 22.10.02-2016</p>
+          </td>
+          </tr>
+          <tr><td><p>22</p>
+          </td>
+          <td><p>Показатель приемлемого риска для персонала и населения</p>
+          </td>
+          <td><p onclick="priemRisk()"><a href="#">подробнее</a></p>
+          </td>
+          <td>
+          </td>
+          </tr>
+          <tr><td><p>23</p>
+          </td>
+          <td><p>Средняя продолжительность жизни населения</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>24</p>
+          </td>
+          <td><p>Рождаемость</p>
+          </td>
+          <td><p onclick="rojdStat()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>25</p>
+          </td>
+          <td><p>Естественный прирост</p>
+          </td>
+          <td><p onclick="estPrirost()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>26</p>
+          </td>
+          <td><p>Общая смертность населения</p>
+          </td>
+          <td><p onclick="obshSmert()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>27</p>
+          </td>
+          <td><p>Количество погибших</p>
+          </td>
+          <td><p onclick="collPogib()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>28</p>
+          </td>
+          <td><p>Численность трудоспособного населения</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>29</p>
+          </td>
+          <td><p>Численность занятых в общественном производстве</p>
+          </td>
+          <td><p onclick="chislZanat()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>30</p>
+          </td>
+          <td><p>Общая численность пенсионеров</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>31</p>
+          </td>
+          <td><p>Количество преступлений на 1000 чел</p>
+          </td>
+          <td><p onclick="collPrestupl()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>32</p>
+          </td>
+          <td><p>Среднегодовые: направление ветра, румбы, скорость ветра</p>
+          </td>
+          <td><p>Росгидромет</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>33</p>
+          </td>
+          <td><p>Максимальные значения скорости ветра по сезонам</p>
+          </td>
+          <td><p onclick="maxScorVetra()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>34</p>
+          </td>
+          <td><p>Количество атмосферных осадков</p>
+          </td>
+          <td><p onclick="collAtmOsad()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>35</p>
+          </td>
+          <td><p>Температура</p>
+          </td>
+          <td><p onclick="srTemper()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>36</p>
+          </td>
+          <td><p>Протяжность железнодорожных путей</p>
+          </td>
+          <td><p>876,8 км</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>37</p>
+          </td>
+          <td><p>Протяженность автомобильных дорог</p>
+          </td>
+          <td><p onclick="showRoads()"><a href="#">1796 км</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>38</p>
+          </td>
+          <td><p>Количество населенных пунктов, не обеспеченных подъездными дорогами с твердым покрытием</p>
+          </td>
+          <td><p>Таких пунктов нет</p>
+          </td>
+          <td>
+          </td>
+          </tr>
+          <tr><td><p>39</p>
+          </td>
+          <td><p>Количество населенных пунктов, не обеспеченных телефонной связью</p>
+          </td>
+          <td><p>Таких пунктов нет</p>
+          </td>
+          <td>
+          </td>
+          </tr>
+          <tr><td><p>40</p>
+          </td>
+          <td><p>Административные районы, в пределах которых расположены участки железных дорог, подверженных размыву, затоплению, лавиноопасные, оползневые и др.</p>
+          </td>
+          <td><p>!!!МЧС России!!!</p>
+          </td>
+          <td><p>Посредством запроса</p>
+          </td>
+          </tr>
+          <tr><td><p>41</p>
+          </td>
+          <td><p>Административные районы, в пределах которых расположены участки автомагистралей, подверженных размыву, затоплению, лавиноопасные, оползневые и др.</p>
+          </td>
+          <td><p>!!!МЧС России!!!</p>
+          </td>
+          <td><p>Посредством запроса</p>
+          </td>
+          </tr>
+          <tr><td><p>42</p>
+          </td>
+          <td><p>Количество автомобильных мостов по направлениям</p>
+          </td>
+          <td><p>41</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>43</p>
+          </td>
+          <td><p>Количество железнодорожных мостов по направлениям</p>
+          </td>
+          <td><p>!!!</p>
+          </td>
+          <td>
+          </td>
+          </tr>
+          <tr><td><p>44</p>
+          </td>
+          <td><p>Протяженность водных путей</p>
+          </td>
+          <td><p>!!!Росстат!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>45</p>
+          </td>
+          <td><p>Количество основных портов, пристаней и их перечень</p>
+          </td>
+          <td>
+            <p>р.Волга, 1310-1311 км с.х. (ОАО СК "Татфлот")</p>
+            <p onclick=getPort()><a href="#">Посмотреть</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>46</p>
+          </td>
+          <td><p>Количество шлюзов и каналов</p>
+          </td>
+          <td><p>!!!Ростехнадзор!!!</p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>47</p>
+          </td>
+          <td><p>Количество аэропортов и посадочных площадок и их местоположение</p>
+          </td>
+          <td>
+            <p>Международный аэропорт Казань имени Габдуллы Тукая</p>
+            <p onclick=getAirPort()><a href="#">Посмотреть</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>48</p>
+          </td>
+          <td><p>Протяженность магистральных трубопроводов</p>
+          </td>
+          <td><p onclick="magTruboprov()"><a href="#">подробнее</a></p>
+          </td>
+          <td>
+          </td>
+          </tr>
+          <tr><td><p>49</p>
+          </td>
+          <td><p>Протяженность линий электропередачи</p>
+          </td>
+          <td><p onclick="lineElektro()"><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>
+          <tr><td><p>49</p>
+          </td>
+          <!--<td><p>Потенционально опасные объекты</p>
+          </td>
+          <td onclick="showPDOToolbar(), hideSquare(), hideTerDel()"><p><a href="#">подробнее</a></p>
+          </td>
+          <td><p>Возможна загрузка из БД</p>
+          </td>
+          </tr>-->
+          </table>      
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./js/chart.js" charset="utf-8"></script>
+    <script src="./js/squareContainer.js" charset="utf-8"></script>
+    <script src="./js/terdelContainer.js" charset="utf-8"></script>
+    <script src="./js/roadsContainer.js" charset="utf-8"></script>
+    <script src="js/map.js" type="text/javascript"></script>
+  </body>
+</html>
