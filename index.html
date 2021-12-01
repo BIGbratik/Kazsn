@@ -27,12 +27,34 @@
       </div>
       <div id="right-container">
         <div id="select-container">
-          <select>
+          <select id="main-select">
             <option>Общая характеристика территории</option>
           </select>
           <button onclick=backToMap()>Стартовая карта</button>
-          <!--<p onclick=backToMap()><a href="#">Вернуться к стартовой карте</a></p>-->
-        </div>        
+        </div>
+        <div id="input-container">
+          <p>Введите ваш ключ доступа: <input id="Key" type="text" size="60"></p>
+            <button id="acc" onclick="accessCtrl()">Отправить</button>
+        </div>
+        <div id="functional-container">
+          <button id="add" onclick="addObject()">Добавить объект</button> 
+          <button id="exit" onclick="exitFromAdd()">Выход</button> 
+        </div>
+        <div id="post">
+          <p>Выберите какой объект желаете добавить:</p>
+          <select id="objectSelect">
+            <option value="poo">ПОО (Потенциально опасный объект)</option>
+            <option value="kvo"">КВО (Критически важный объект)</option>
+            <option value="bridg">Автомобильный мост по направлению</option>
+            <option value="hospital">Медицинское учреждение</option>
+            <option value="infec">Медицинское учреждение с инфекционным отделением</option>
+          </select>
+          <p>Введите название объекта: <input id="Name" type="text" size="50"></p>
+          <p>Введите широту: <input id="Coordinate1" type="number" size="50"></p>
+          <p>Введите долготу: <input id="Coordinate2" type="number" size="50"></p>
+          <p>Введите дополнительную информацию (обязательно для объекта типа ПОО): <input id="Extra" type="text" size="50"></p>
+          <button onclick="postServer()">Отправить</button>
+        </div>     
         <div id="table-container">
           <table id="obshaya-harack" class="table">
           <tr><td><p>0</p>
@@ -517,5 +539,7 @@
     <script src="./js/terdelContainer.js" charset="utf-8"></script>
     <script src="./js/roadsContainer.js" charset="utf-8"></script>
     <script src="js/map.js" type="text/javascript"></script>
+    <script src="js/input.js" charset="utf-8"></script>
+    <script src="js/functional.js" charset="utf-8"></script>
   </body>
 </html>
