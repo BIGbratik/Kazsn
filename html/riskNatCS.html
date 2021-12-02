@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Показатели риска природных ЧС</title>
+    <link rel="stylesheet" href="./css/dope.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=621be811-2d42-457e-a014-904ec9f03a02&lang=ru_RU" harset="utf-8"></script>
+  </head>
+  <body>
+    <div id="riskNatCS-container">
+      <table id="riskNatCS-table">
+        <tbody>
+          <tr>
+            <th rowspan="2">Виды опасных природных явлений</th>
+            <th rowspan="2">Интенсивность  природного  явления</th>
+            <th rowspan="2">Частота  природного  явления,  год</th>
+            <th rowspan="2">Частота  наступления  чрезвычайных  ситуаций при  возникновении  природного  явления,  год</th>
+            <th rowspan="2">Размеры  зон  вероятной  чрезвычайной  ситуации,  км<sup>2</sup></th>
+            <th rowspan="2">Возможное количество  населенных  пунктов,  попадающих в зону  чрезвычайной  ситуации,  тыс. чел.</th>
+            <th rowspan="2">Возможная  численность  населения в  зоне  чрезвычайной  ситуации с  нарушением  условий  жизнедеятельности, тыс.  чел.</th>
+            <th colspan="3">Социально-экономическиепоследствия</th>
+          </tr>
+          <tr>
+            <th>Возможное  число  погибших,  чел.</th>
+            <th>Возможное  число  пострадавших, чел.</th>
+            <th>Возможный  ущерб,  руб.</th>
+          </tr>
+          <tr>
+            <td rowspan="3">1.Землетрясения, балл</td>
+            <td>7-8</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>8-9</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>>9</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>2. Извержения вулканов</td>
+            <td>-</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>3. Оползни, м</td>
+            <td>-</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>4. Селевые потоки</td>
+            <td>-</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>5. Снежные лавины, м</td>
+            <td>-</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>6. Ураганы, тайфуны, смерчи м/с</td>
+            <td>>32</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>7. Бури, м/с</td>
+            <td>>32</td>
+            <td>10</td>
+            <td>1-2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>8. Штормы, м/с</td>
+            <td>15-31</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>9. Град, мм</td>
+            <td>20-31</td>
+            <td>1-2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>10. Цунами, м</td>
+            <td>>5</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>11. Наводнения, м</td>
+            <td>>5</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>12. Подтопления, м</td>
+            <td>>5</td>
+            <td>1-2</td>
+            <td>1-2</td>
+            <td>0</td>
+            <td>14 участков</td>
+            <td>976</td>
+            <td>0</td>
+            <td>976</td>
+            <td>до 200 млн. руб.</td>
+          </tr>
+          <tr>
+            <td>13. Пожары природные, га</td>
+            <td>-</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

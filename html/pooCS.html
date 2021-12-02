@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Показатели риска природных ЧС на ПОО</title>
+    <link rel="stylesheet" href="./css/dope.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=621be811-2d42-457e-a014-904ec9f03a02&lang=ru_RU" harset="utf-8"></script>
+  </head>
+  <body>
+    <div id="pooCS-container">
+      <table id="pooCS-table">
+        <tbody>
+          <tr>
+            <th rowspan="2">Виды возможных техногенных чрезвычайных ситуаций</th>
+            <th rowspan="2">Месторасположение и наименование объектов</th>
+            <th rowspan="2">Вид и возможное количество опасного вещества, участвующего в реализации чрезвычайных ситуаций (тонн)</th>
+            <th rowspan="2">Возможная частота реализации чрезвычайных ситуаций, год</th>
+            <th rowspan="2">Показатель приемлемого риска, год</th>
+            <th rowspan="2">Размеры зон вероятной чрезвычайной ситуации, км<sup>2</sup></th>
+            <th rowspan="2">Численность населения, у которого могут быть нарушены условия жизнедейтельности, тыс. чел</th>
+            <th colspan="3">Социально-экономические последствия</th>
+          </tr>
+          <tr>
+            <th>Возможное  число  погибших,  чел.</th>
+            <th>Возможное  число  пострадавших,  чел.</th>
+            <th>Возможный  ущерб,  руб.</th> 
+          </tr>
+          <tr>
+            <td rowspan="10">1. Чрезвычайные ситуации на  химически опасных объектах</td>
+            <td rowspan="2">ПАО «Казань оргсинтез» (г. Казань, Кировский район, ул. Боевая, д. 145);</td>
+            <td rowspan="2">0,78</td>
+            <td rowspan="2">3,57*10<sup>-4</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">18,7</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">15 (перс)</td>
+            <td rowspan="2">29 (перс)</td>
+            <td rowspan="2">70 324 061</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ЗАО «ПИВОВАРНЯ МОСКВА-ЭФЕС» (г. Казань, Приволжский район, ул. Тихорецкая, д. 5);</td>
+            <td rowspan="2">5,53</td>
+            <td rowspan="2">5,13*10<sup>-12</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,85</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">15 (перс)</td>
+            <td>114 (перс)</td>
+            <td rowspan="2">9 735 384</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+            <td>48 (насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ФИЛИАЛ ООО УК «ПРОСТО МОЛОКО» КАЗАНСКИЙ МОЛОЧНЫЙ КОМБИНАТ (г. Казань, Советский район, ул. Академика Арбузова, д. 7);</td>
+            <td rowspan="2">2,43</td>
+            <td rowspan="2">1*10<sup>-10</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,22</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">111 (перс)</td>
+            <td rowspan="2">11 (насел)</td>
+            <td rowspan="2">500 000</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">МУП «ВОДОКАНАЛ» СКЛАД ХЛОРА (включая хлораторное отделение) НА ВОДОЗАБОРЕ ВОЛЖСКИЙ (г. Казань, Кировский район, ул. Боевая, д. 147);</td>
+            <td rowspan="2">0,75</td>
+            <td rowspan="2">5,74*10<sup>-8</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">18,74</td>
+            <td rowspan="2">-</td>
+            <td>32 (перс)</td>
+            <td>97 (перс)</td>
+            <td rowspan="2">131 622 597</td>
+          </tr>
+          <tr>
+            
+            <td>1*10<sup>-8</sup>(насел)</td>
+            <td>16 (насел)</td>
+            <td>114 (насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ФИЛИАЛ «МОЛОЧНЫЙ КОМБИНАТ» ЭДЕЛЬВЕЙС ДАННОН РОССИЯ (г. Казань, Приволжский район, ул. Тихорецкая, д. 39).</td>
+            <td rowspan="2">2,5</td>
+            <td rowspan="2">1*10<sup>-10</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,25</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">3 (перс)</td>
+            <td rowspan="2">10 (перс)</td>
+            <td rowspan="2">50 0000</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td>2. Чрезвычайные ситуации на  радиационно-опасных объектах</td>
+            <td colspan="9">На радиационно-опасных объектах аварий не прогнозируется</td>
+          </tr>
+          <tr>
+            <td rowspan="5">3. Чрезвычайные ситуации на  биологически опасных объектах</td>
+            <td>ФГБНУ «Федеральный центр токсикологической и радиационной и биологической безопасности» (ФГБНУ «ФЦТРБ - ВНИВИ») (лаборатория коллекция микроорганизмов);</td>
+            <td>-</td>
+            <td>10<sup>-7</sup></td>
+            <td>1*10<sup>-5</sup></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>ПТ ГБУ «Республиканская ветеринарная лаборатория» (г. Казань, Даурская, 34);</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ПТ ФГБУ «Татарская межрегиональная ветеринарная  лаборатория» (г. Казань, Родины, 25а);</td>
+            <td rowspan="2">0,016</td>
+            <td rowspan="2">2,49*10<sup>-6</sup></td>
+            <td>1*10<sup>-6</sup> (перс)</td>
+            <td rowspan="2">0,002</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">50 000</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-7</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td>ПТ ФБУЗ «Центр гигиены и эпидемиологии в Республике Татарстан (Татарстан)» (г. Казань, Сеченова, 13а)</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>20</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td rowspan="68">4. Чрезвычайные ситуации на  пожаро- и взрывоопасных  объектах</td>
+            <td rowspan="2">ПАО «Казань оргсинтез» (г. Казань, Кировский район, ул. Боевая, д. 145);</td> 
+            <td rowspan="2">10,7</td>
+            <td rowspan="2">6,89*10<sup>-6</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">1,4</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">63 (перс)</td>
+            <td rowspan="2">191 (перс)</td>
+            <td rowspan="2">767 487 674</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Казанский вертолетный завод (ул. Тэцевская, д.14) г.Казань;</td> 
+            <td rowspan="2">2,06</td>
+            <td rowspan="2">3,46*10<sup>-5</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,19</td>
+            <td rowspan="2">420</td>
+            <td rowspan="2">57 (перс)</td>
+            <td rowspan="2">20 (перс)</td>
+            <td rowspan="2">94 098 595</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Казанский завод синтетич. кауч. С.П. Кирова (ул. Лебедева, д.1) г.Казань;</td> 
+            <td rowspan="2">4,37  (бутадиеновый  конденсат)</td>
+            <td rowspan="2">8,00*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,026</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">186 (насел)</td>
+            <td rowspan="2">71 (насел)</td>
+            <td rowspan="2">20 704 200</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Филиал АО ТГК-16 КТЭЦ-3 (ул. Северо-Западная, д.1) г. Казань;</td> 
+            <td rowspan="2">7,6</td>
+            <td rowspan="2">3,24*10<sup>-3</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,007</td>
+            <td rowspan="2">0</td>
+            <td>0(перс)</td>
+            <td>0(перс)</td>
+            <td rowspan="2">25 961 600</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+            <td>0(насел)</td>
+            <td>0(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО «Казанькомпрессормаш» (ул. Халитова, д.1.) г.Казань;</td> 
+            <td rowspan="2">0,67</td>
+            <td rowspan="2">5,12*10<sup>-8</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,093</td>
+            <td rowspan="2">0</td>
+            <td>2(перс)</td>
+            <td>15(перс)</td>
+            <td rowspan="2">19 207</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+            <td>0(насел)</td>
+            <td>1(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО КМПО (ул. Дементьева, д.1) г. Казань;</td> 
+            <td rowspan="2">1</td>
+            <td rowspan="2">1*10<sup>-4</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,0188</td>
+            <td rowspan="2">70</td>
+            <td rowspan="2">10</td>
+            <td rowspan="2">38(перс)</td>
+            <td rowspan="2">807 895 100</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО ХК Татнефтепродукт, филиал Казаньнефтепродукт Нефтебаза г.Казань;</td> 
+            <td rowspan="2">3145  (бензин)</td>
+            <td rowspan="2">4,00*10<sup>-8</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">0,0204</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">3</td>
+            <td rowspan="2">1</td>
+            <td rowspan="2">140 057 700</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Таткрахмалпатока (ул. Г. Камала, д.39) г. Казань;</td> 
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">АО «Казаньзернопродукт» (ул. Хлебозаводская, д.3.) г.Казань;</td> 
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Железнодорожный узел «Казань» Горьковской железной дороги ОАО «РЖД» г. Казань;</td> 
+            <td rowspan="2">3,9</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">2,00*10<sup>-4</sup></td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО «РЖД» Горьковская железная дорога Казанское отделение Локомотивное депо Юдино;</td> 
+            <td rowspan="2">0,13  (бензин)</td>
+            <td rowspan="2">1*10<sup>-4</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">7,00*10<sup>-11</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">2 050 300</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Генерирующая компания Казанская ТЭЦ-1 котельная Азино (Азино-2) г. Казань;</td> 
+            <td rowspan="2">67</td>
+            <td rowspan="2">1,15*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">4,00*10<sup>-4</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">689 800</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+            <td rowspan="2">Филиал АО «Татэнерго» Казанская ТЭЦ-2 (ул. Тэцевская, д.11) г. Казань;</td> 
+            <td rowspan="2">165  (серная кислота)</td>
+            <td rowspan="2">1,00*10<sup>-5</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">1,00*10<sup>-5</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">3 412 700</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Филиал АО «Татэнерго» Казанская ТЭЦ-2 котельная «Савиново» (ул. Силикатная, д.13.) г.Казань;</td> 
+            <td rowspan="2">1,91  (метан)</td>
+            <td rowspan="2">4,00*10<sup>-5</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">3,97*10<sup>-4</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">689 800</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Филиал АО «Татэнерго», Казанская ТЭЦ-1 котельная «Горки» (горки-2) г. Казань;</td> 
+            <td rowspan="2">67</td>
+            <td rowspan="2">1,15*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">135(перс)</td>
+            <td rowspan="2">53(перс)</td>
+            <td rowspan="2">791 973 256</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Филиал АО «Татэнерго» Казанская ТЭЦ-1  г. Казань;</td> 
+            <td rowspan="2">7,6</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">7,00*10<sup>-3</sup></td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ЗАО «Русэкопроект» передвиж. модульн. установка г. Казань;</td> 
+            <td rowspan="2">0,49  (пары нефти)</td>
+            <td rowspan="2">4,83 * 10<sup>-9</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">139795</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">6</td>
+            <td rowspan="2">7</td>
+            <td rowspan="2">5 378 200</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ЗАО КВАРТ (ул. Техническая, д. 25) г. Казань;</td> 
+            <td rowspan="2">13</td>
+            <td rowspan="2">1.00*10<sup>-4</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">1,5-10<sup>-1</sup></td>
+            <td rowspan="2">21</td>
+            <td rowspan="2">3</td>
+            <td rowspan="2">4</td>
+            <td rowspan="2">17 564 500</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Казанский оптико-механический завод КОМЗ (ул. Липатова, д.37) г. Казань;</td> 
+            <td rowspan="2">0,024  (метан)</td>
+            <td rowspan="2">3,00*10<sup>-8</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">3,792-10<sup>-3</sup></td>
+            <td rowspan="2">500</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">3</td>
+            <td rowspan="2">1 844 200</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Филиал ОАО «Татспиртпром» «Винзавод «Казанский» (ул. Учительская, д.5.) г.Казань;</td> 
+            <td rowspan="2">108</td>
+            <td rowspan="2">1,00</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">6,20-10<sup>-4</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">164 000</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Татхимфармпрепараты (ул. Беломорская, д. 260) г. Казань;</td> 
+            <td rowspan="2">0,338 (этанол)</td>
+            <td rowspan="2">3,95*10<sup>-10</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">2,00-10<sup>-3</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">3</td>
+            <td rowspan="2">2</td>
+            <td rowspan="2">5 788 050</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО «Булочно-кондитерский комбинат» (ул.Адоратского, д.50)  г.Казань;</td> 
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ООО «УК «Шуз Концепт» газифицированная котельная ОАО «Спартак»  (ул. Спартаковская, д.2.) г.Казань;</td> 
+            <td rowspan="2">-</td>
+            <td rowspan="2">2,65*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Татарстанские зерновые технологии Казанский элеватор г. Казань;</td> 
+            <td rowspan="2">0,22  (зерновая пыль)<td>
+            <td rowspan="2">3,36*10<sup>-6</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">5,00*10<sup>-4</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">8</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">19 414 050</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ФКП Казанский завод точного машиностроения им. М.П Калинина (ул. М. Гафури, д.71) г. Казань;</td> 
+            <td rowspan="2">1000<td>
+            <td rowspan="2">1,00*10<sup>-4</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">6,00*10<sup>-3</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">1</td>
+            <td rowspan="2">5</td>
+            <td rowspan="2">11 166 300</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Казанский авиационный завод им. С.П. Горбунова филиал ПАО «Туполев» (ул. Дементьева, д.1);</td> 
+            <td rowspan="2">1000<td>
+            <td rowspan="2">1,00*10<sup>-4</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">6,00*10<sup>-3</sup></td>
+            <td rowspan="2">690</td>
+            <td rowspan="2">49</td>
+            <td rowspan="2">648</td>
+            <td rowspan="2">1 045 552 800</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Нэфис-Косметикс Казанский химический комбинат им. М.Вахитова г. Казань;</td> 
+            <td rowspan="2">119,1  (водород)</td>
+            <td rowspan="2">9,5*10<sup>-10</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">7,10*10<sup>-2</sup></td>
+            <td rowspan="2">150</td>
+            <td rowspan="2">3</td>
+            <td rowspan="2">8</td>
+            <td rowspan="2">5 541 900</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ФКП «ГосНИИХП» (ул.Светлая, д.1) г.Казань;</td> 
+            <td rowspan="2">0,89  (аммиак)</td>
+            <td rowspan="2">5,00*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">1,473366</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">122</td>
+            <td rowspan="2">1759</td>
+            <td rowspan="2">244 497 900</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ООО «Сжиженный газ» база хранения (кустовая) (газонаполнительная станция  г. Казань) (ул. С.Западная, д.10);</td> 
+            <td rowspan="2">40 (сжиж. газ)</td>
+            <td rowspan="2">3,96*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">1,50*10<sup>-1</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">1</td>
+            <td rowspan="2">14</td>
+            <td rowspan="2">118 900</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО Казанский завод Электроприбор (ул. Н.Ершова, д.20) г. Казань;</td> 
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ОАО КЭТЗ Казанский электротехнический завод (ул. Модельная, д.19) г. Казань;</td> 
+            <td rowspan="2">10,4  (сжиж. газ)</td>
+            <td rowspan="2">0,48*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">4,00*10<sup>-4</sup></td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">НПО Гос. инст. приклад. оптики (ул. Липатова, д.2) г. Казань;</td> 
+            <td rowspan="2">0,9114  (метан)</td>
+            <td rowspan="2">2,65*10<sup>-7</sup></td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">3,32*10<sup>-2</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">122</td>
+            <td rowspan="2">1759</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">ЗАО Агротехмашстройсервис ( Кировский район, п. Залесный) г. Казань;</td> 
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+            <td rowspan="2">-</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Филиал ОАО «Татспиртпром» «Винзавод «Казанский» (ул. Учительская, д.5.) г.Казань.</td> 
+            <td rowspan="2">11  (этиловый спирт)</td>
+            <td rowspan="2">1,00</td>
+            <td>1*10<sup>-6</sup>(перс)</td>
+            <td rowspan="2">6,2*10<sup>-4</sup></td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">0</td>
+            <td rowspan="2">164 000</td>
+          </tr>
+          <tr>
+            <td>1*10<sup>-8</sup>(насел)</td>
+          </tr>
+          <tr>
+            <td>5. Чрезвычайные ситуации на  электроэнергетических  системах и системах связи</td>
+            <td colspan="9">Показатели риска: 10<sup>-4</sup></td>
+          </tr>
+          <tr>
+            <td rowspan="5">6. Чрезвычайные ситуации на  коммунальных системах  жизнеобеспечения</td>
+            <td colspan="9">Показатели риска: 10<sup>-4</sup></td>
+          </tr>
+          <tr>
+            <td>При аварии на Казанской ТЭЦ-2 в зону отключения попадают:</td>
+          </tr>
+          <tr>
+            <td>Жилых домов: 13189;</td>
+          </tr>
+          <tr>
+            <td>Социально важных объектов: 97;</td>
+          </tr>
+          <tr>
+            <td>Населения: 112 929 чел.</td>
+          </tr>
+          <tr>
+            <td>7. Чрезвычайные ситуации на  гидротехнических сооружениях</td>
+            <td colspan="9">Риски возникновения гидродинамических аварий в районе отсутствуют в связи с отсутствием на территории муниципального образования аварийных гидротехнических сооружений</td>
+          </tr>
+          <tr>
+            <td rowspan="5">8. Чрезвычайные ситуации на  транспорте</td>
+            <td>Риски: Для автомобильного транспорта – 10<sup>-2</sup></td>
+          </tr>
+          <tr>
+            <td>Для железнодорожного транспорта – 10<sup>-4</sup></td>
+          </tr>
+          <tr>
+            <td>Для объектов метрополитена – 10<sup>-4</sup></td>
+          </tr>
+          <tr>
+            <td>Для воздушного транспорта – 10<sup>-4</sup></td>
+          </tr>
+          <tr>
+            <td>Для речного транспорта – 10<sup>-3</sup></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

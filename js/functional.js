@@ -9,11 +9,13 @@ function exitFromAdd()
     document.getElementById("Coordinate2").value='';
     document.getElementById("Extra").value='';
     document.getElementById("Name").value='';
+    document.getElementById('table-container').style.height='80%';
 }
 
 function addObject()
 {
     document.getElementById('post').style.display='block';
+    document.getElementById('table-container').style.height='60%';
 }
 
 async function postServer()
@@ -34,7 +36,7 @@ async function postServer()
 
         console.log(message);
 
-        let response = await fetch(`http://192.168.43.86:8080/`,
+        let response = await fetch( `https://infinite-brushlands-39495.herokuapp.com/create`,
         {
             method: 'POST',
             headers: 

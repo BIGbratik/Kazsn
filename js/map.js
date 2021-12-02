@@ -334,7 +334,7 @@ async function infecInit()
 
 async function getFromServer(name)
 {
-  let response=await fetch(`http://192.168.43.86:8080/${name}`, 
+  let response=await fetch(`https://infinite-brushlands-39495.herokuapp.com/${name}`, 
   {
     method:'GET',
     headers:

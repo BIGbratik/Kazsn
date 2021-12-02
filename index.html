@@ -14,10 +14,25 @@
       <div id="left-container">
         <div id="map"></div>
         <!-- НЕ НАДО ТРОГАТЬ -->
-        <div id="pdo-toolbar">
+        <!--<div id="pdo-toolbar">
           <div><label><input type="checkbox" id="kvo" onclick="showPDO(1)"> КВО</label></div>
           <div><label><input type="checkbox" id="poo" onclick="showPDO(2)"> ПОО</label></div>
           <div><label><input type="checkbox" id="ojo" onclick="showPDO(3)"> ОЖО</label></div>
+        </div>-->
+        <div id="dopContainer">
+          <p>Выберите таблицу к рассмотрению:</p>
+          <select id="dopInfo">
+            <option value="html/harkPOO.html">Характеристики ПОО</option>
+            <option value="html/riskNatCS.html">Показатели риска природных ЧС</option>
+            <option value="html/pooCS.html">ЧС на различных ПОО</option>
+            <option value="html/bioSocCS.html">Показатели риска биолого-социальных ЧС</option>
+            <option value="html/orgTec.html">Характеристики организационно-технических мероприятий по защите населения</option>
+            <option value="html/obshCS.html">Общие сведения о Казани</option>
+            <option value="html/istochnikCS.html">Источники ЧС</option>
+            <option value="html/pokazateli.html">Показатели Синдайской рамочной программы</option>
+          </select>
+          <button onclick="getDopTable()">Посмотреть</button>
+
         </div>
         <div id="squareContainer"><img id="square" src="images/area.png"></div>
         <div id="terdelContainer"><img id="terdel" src="images/terdel.png"></div>
@@ -44,7 +59,7 @@
           <p>Выберите какой объект желаете добавить:</p>
           <select id="objectSelect">
             <option value="poo">ПОО (Потенциально опасный объект)</option>
-            <option value="kvo"">КВО (Критически важный объект)</option>
+            <option value="kvo">КВО (Критически важный объект)</option>
             <option value="bridg">Автомобильный мост по направлению</option>
             <option value="hospital">Медицинское учреждение</option>
             <option value="infec">Медицинское учреждение с инфекционным отделением</option>
@@ -541,5 +556,6 @@
     <script src="js/map.js" type="text/javascript"></script>
     <script src="js/input.js" charset="utf-8"></script>
     <script src="js/functional.js" charset="utf-8"></script>
+    <script src="js/dopContainer.js" charset="utf-8"></script>
   </body>
 </html>
