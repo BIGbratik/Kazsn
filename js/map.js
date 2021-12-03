@@ -334,7 +334,7 @@ async function infecInit()
 
 async function getFromServer(name)
 {
-  let response=await fetch(`https://infinite-brushlands-39495.herokuapp.com/${name}`, 
+  let response=await fetch(/*`https://localhost:5001/server`*/`https://infinite-brushlands-39495.herokuapp.com/${name}`, 
   {
     method:'GET',
     headers:
@@ -343,6 +343,7 @@ async function getFromServer(name)
     }
   });
   let res=await response.json();
-  //console.log(res)
+  //let res=await response.text();
+  console.log(res)
   return res;
 }
