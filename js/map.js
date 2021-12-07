@@ -109,7 +109,6 @@ async function hospitalInit()
     geoObjectHideIconOnBalloonOpen: false
   });
   let res = await getFromServer('hospital')
-  console.log(res[0].Coordinates);
   geoObjects=[];
   for(var i = 0, len = res.length; i < len; i++) 
   {
@@ -158,8 +157,7 @@ async function pooInit()
     clusterHideIconOnBalloonOpen: false,
     geoObjectHideIconOnBalloonOpen: false
   });
-  let res = await getFromServer('poo')
-  console.log(res[0].Coordinates);
+  let res = await getFromServer('poo');
   geoObjects=[];
   for(var i = 0, len = res.length; i < len; i++) 
   {
@@ -209,8 +207,7 @@ async function kvoInit()
     clusterHideIconOnBalloonOpen: false,
     geoObjectHideIconOnBalloonOpen: false
   });
-  let res = await getFromServer('kvo')
-  console.log(res[0].Coordinates);
+  let res = await getFromServer('kvo');
   geoObjects=[];
   for(var i = 0, len = res.length; i < len; i++) 
   {
@@ -259,8 +256,7 @@ async function bridgesInit()
     clusterHideIconOnBalloonOpen: false,
     geoObjectHideIconOnBalloonOpen: false
   });
-  let res = await getFromServer('bridg')
-  console.log(res[0].Coordinates);
+  let res = await getFromServer('bridg');
   geoObjects=[];
   for(var i = 0, len = res.length; i < len; i++) 
   {
@@ -308,8 +304,7 @@ async function infecInit()
     clusterHideIconOnBalloonOpen: false,
     geoObjectHideIconOnBalloonOpen: false
   });
-  let res = await getFromServer('infec')
-  console.log(res[0].Coordinates);
+  let res = await getFromServer('infec');
   geoObjects=[];
   for(var i = 0, len = res.length; i < len; i++) 
   {
@@ -334,7 +329,7 @@ async function infecInit()
 
 async function getFromServer(name)
 {
-  let response=await fetch(/*`https://localhost:5001/server`*/`https://infinite-brushlands-39495.herokuapp.com/${name}`, 
+  let response=await fetch(/*`https://localhost:5001/server/`*/`https://infinite-brushlands-39495.herokuapp.com/${name}`, 
   {
     method:'GET',
     headers:
@@ -342,6 +337,7 @@ async function getFromServer(name)
       'Content-Type': 'application/json; charset=utf-8'
     }
   });
+  console.log(response);
   let res=await response.json();
   //let res=await response.text();
   console.log(res)

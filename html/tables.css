@@ -1,0 +1,23 @@
+table
+ {
+  border: 5px solid black;
+  margin-left: 2%;
+  margin-right: 2%;
+ }
+
+ h1
+ {
+   text-align: center;
+ }
+
+ td, th
+ {
+  border: 2px solid black;
+  text-align: center;
+ }
+
+ th
+ {
+  background: #ffd300;
+  color: white;
+ }
