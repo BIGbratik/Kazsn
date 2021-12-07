@@ -103,11 +103,6 @@ p {
     text-align: center;
 }
 
-th
-{
- background: #ffd300;
-}
-
 #select-container {
     display: flex;
     align-items: center;
@@ -157,6 +152,12 @@ th
     height:80%;
 	border: 3px solid #ffd300;
     overflow-y: scroll;
+}
+
+.table th
+{
+    background: #ffd300;
+    border: 2px solid black;
 }
 
 .table {
