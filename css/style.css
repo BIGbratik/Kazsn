@@ -63,11 +63,20 @@ p {
 #dopContainer
 {
     position: absolute;
-    left: 25%; bottom: 5%;
+    left: 23%; bottom: 5%;
     display: block;
-    width: 30%; height: 48px;
+    width: 405px; 
+    height: 45px;
     background-color: #f8f8f8;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.199);
+    border: solid #ffd300;
+    text-align: center;
+}
+
+#dopInfo
+{
+    width:300px;
+    margin-left: 1%;
 }
 
 #pdo-toolbar div {
@@ -91,6 +100,12 @@ p {
     width: 668px; height: 100vh;
     padding: 10px;
     box-shadow: -10px 0px 50px rgba(0, 0, 0, 0.199);
+    text-align: center;
+}
+
+th
+{
+ background: #ffd300;
 }
 
 #select-container {
