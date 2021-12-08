@@ -49,11 +49,12 @@ function portInit()
       Порт включен в прямое смешанное сообщение`
     },
     {
-      present:'islands#nightDotIcon'
+      preset:'islands#nightWaterwayIcon'
     });
   myMap.geoObjects.add(myPlaceMark);
 }
 
+//Запуск отрисовки карты с аэропортом
 function getAirPort()
 {
   if (myMap!=null) myMap.destroy();
@@ -78,11 +79,12 @@ function airPortInit()
       balloonContentBody: 'Международный аэропорт Казань имени Г.М. Тукая'
     },
     {
-      present:'islands#nightDotIcon'
+      preset:'islands#nightAirportIcon'
     });
   myMap.geoObjects.add(myPlaceMark);
 }
 
+//Запуск отрисовки карты с медицинскими учреждениями
 function hospitalMap() {
   if (myMap != null) myMap.destroy();
   ymaps.ready(hospitalInit);
@@ -131,6 +133,7 @@ async function hospitalInit()
   myMap.geoObjects.add(clusterer);
 }
 
+//Запуск отрисовки карты с объектами ПОО
 function getPOO()
 {
   if (myMap != null) myMap.destroy();
@@ -169,7 +172,7 @@ async function pooInit()
         clusterCaption: 'Объект № <strong>' + (i+1) + '</strong>'
       },
       {
-        preset: 'islands#nightMedicalIcon'
+        preset: 'islands#nightAttentionIcon'
       });
   }
   clusterer.options.set(
@@ -181,6 +184,7 @@ async function pooInit()
   myMap.geoObjects.add(clusterer); 
 }
 
+//Запуск отрисовки карты с объектов КВО
 function getKVO()
 {
   if (myMap != null) myMap.destroy();
@@ -190,7 +194,6 @@ function getKVO()
 async function kvoInit()
 {
   document.getElementById('map').style.display = 'block';
-  //var pooMAS=getFromServer(1);
   myMap = new ymaps.Map('map', 
   {
     center: [55.796127, 49.106414], // Казань
@@ -218,7 +221,7 @@ async function kvoInit()
         clusterCaption: 'Объект № <strong>' + (i+1) + '</strong>'
       },
       {
-        preset: 'islands#nightMedicalIcon'
+        preset: 'islands#nightAttentionIcon'
       });
   }
   clusterer.options.set(
@@ -230,6 +233,7 @@ async function kvoInit()
   myMap.geoObjects.add(clusterer);
 }
 
+//Запуск отрисовки карты с автомобильными мостами
 function getBridges()
 {
   if (myMap != null) myMap.destroy();
@@ -267,7 +271,7 @@ async function bridgesInit()
         clusterCaption: 'Мост № <strong>' + (i+1) + '</strong>'
       },
       {
-        preset: 'islands#nightMedicalIcon'
+        preset: 'islands#nightAutoIcon'
       });
   }
   clusterer.options.set(
@@ -279,6 +283,7 @@ async function bridgesInit()
   myMap.geoObjects.add(clusterer);
 }
 
+//Запуск отрисовки карты с инфекционными стационарами
 function getInfec() {
   if (myMap != null) myMap.destroy();
   ymaps.ready(infecInit);
@@ -327,6 +332,7 @@ async function infecInit()
   myMap.geoObjects.add(clusterer);
 }
 
+//Запрос к серверу за получением списка координат
 async function getFromServer(name)
 {
   let response=await fetch(/*`https://localhost:5001/server/`*/`https://infinite-brushlands-39495.herokuapp.com/${name}`, 
@@ -336,10 +342,7 @@ async function getFromServer(name)
     {
       'Content-Type': 'application/json; charset=utf-8'
     }
-  });
-  console.log(response);
+  })
   let res=await response.json();
-  //let res=await response.text();
-  console.log(res)
   return res;
 }
